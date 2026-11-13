@@ -1,0 +1,158 @@
+
+<div class="top-page">
+
+  
+
+    <!-- ヘッダー -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="site-logo"><%= t("site.title") %></a>
+
+            <nav class="header-nav">
+                <a href="/"><%= t("site.home") %></a>
+                <a href="#spots"><%= t("site.spots") %></a>
+                <a href="#categories"><%= t("site.categories") %></a>
+                <a href="#about"><%= t("site.about") %></a>
+
+                <div class="language-switcher">
+                    <details>
+                        <summary>🌐 言語 ▼</summary>
+                        <div class="language-menu">
+                            <%= link_to "日本語", switch_locale_path(:ja) %>
+                            <%= link_to "English", switch_locale_path(:en) %>
+                        </div>
+                    </details>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+
+  <!-- メインビジュアル -->
+  <section class="hero">
+    <img src="/images/miyajima.jpg" alt="宮島の厳島神社と大鳥居" class="hero-image">
+
+    <div class="hero-message">
+      <p><%= t("site.hero_title") %></p>
+      <h1><%= t("site.hero_description") %></h1>
+      <span><%= t("site.hero_subtitle") %></span>
+    </div>
+  </section>
+
+  <main class="main-content">
+
+    <!-- 検索エリア -->
+    <section class="search-section">
+      <h2>広島の観光地を探す</h2>
+      <p>気になる場所やキーワードから観光地を探してみましょう。</p>
+
+      <div class="search-box">
+        <input type="text" placeholder="観光地名・キーワードを入力">
+        <button type="button">検索</button>
+      </div>
+    </section>
+
+    <!-- ジャンルから探す -->
+    <section class="category-section" id="categories">
+      <div class="section-heading">
+        <h2>ジャンルから探す</h2>
+        <p>興味のあるジャンルから観光地を見つけよう。</p>
+      </div>
+
+      <div class="category-list">
+        <a href="#spots" class="category-card">
+          <span>🌿</span>
+          <h3>自然・絶景</h3>
+          <p>美しい景色や自然を楽しむ</p>
+        </a>
+
+        <a href="#spots" class="category-card">
+          <span>🏯</span>
+          <h3>歴史・文化</h3>
+          <p>歴史ある建物や文化に触れる</p>
+        </a>
+
+        <a href="#spots" class="category-card">
+          <span>🌉</span>
+          <h3>インフラ</h3>
+          <p>橋やダムなどの土木施設を巡る</p>
+        </a>
+
+        <a href="#spots" class="category-card">
+          <span>🎡</span>
+          <h3>体験・レジャー</h3>
+          <p>体験や遊びを楽しむ</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- おすすめ観光地 -->
+    <section class="spots-section" id="spots">
+      <div class="section-heading">
+        <h2>おすすめ観光地</h2>
+        <p>広島県には、まだまだ知られていない魅力がたくさんあります。</p>
+      </div>
+
+      <div class="spot-list">
+
+        <article class="spot-card">
+          <div class="spot-image-placeholder nature">
+            <span>自然・絶景</span>
+          </div>
+          <div class="spot-info">
+            <h3>三段峡</h3>
+            <p class="spot-location">広島県安芸太田町</p>
+            <p>美しい渓谷や滝など、豊かな自然を満喫できる景勝地。</p>
+            <a href="#spots">詳細を見る →</a>
+          </div>
+        </article>
+
+        <article class="spot-card">
+          <div class="spot-image-placeholder history">
+            <span>歴史・文化</span>
+          </div>
+          <div class="spot-info">
+            <h3>帝釈峡</h3>
+            <p class="spot-location">広島県庄原市・神石高原町</p>
+            <p>雄橋などの自然が作り出した壮大な景観が魅力。</p>
+            <a href="#spots">詳細を見る →</a>
+          </div>
+        </article>
+
+        <article class="spot-card">
+          <div class="spot-image-placeholder infrastructure">
+            <span>インフラ</span>
+          </div>
+          <div class="spot-info">
+            <h3>灰塚ダム</h3>
+            <p class="spot-location">広島県三次市・庄原市</p>
+            <p>ダムと周辺の自然景観を楽しめるスポット。</p>
+            <a href="#spots">詳細を見る →</a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="more-button">
+        <a href="#spots">観光地をもっと見る →</a>
+      </div>
+    </section>
+
+    <!-- サイトについて -->
+    <section class="about-section" id="about">
+      <h2>広島の新しい魅力を発見しよう</h2>
+      <p>
+        宮島や原爆ドームだけではない、広島県内のさまざまな観光地を紹介しています。
+        あなたの知らない広島を見つけてみませんか？
+      </p>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <p>© 2026 ひろしま観光発見！</p>
+  </footer>
+
+</div>
