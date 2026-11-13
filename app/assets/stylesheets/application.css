@@ -1,10 +1,424 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+
+/* 全体 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #333;
+  font-family: "Noto Sans JP", sans-serif;
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.top-page {
+  width: 100%;
+}
+
+/* ヘッダー */
+.site-header {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.site-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #246a9b;
+  white-space: nowrap;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.header-nav a {
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+  white-space: nowrap;
+}
+
+.header-nav a:hover {
+  color: #267eb5;
+}
+
+/* メインビジュアル */
+.hero {
+  position: relative;
+  width: 100%;
+  background-color: #e9f3f8;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-message {
+  position: absolute;
+  top: 12%;
+  left: 7%;
+  color: #fff;
+  text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.65);
+}
+
+.hero-message p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.hero-message h1 {
+  font-size: clamp(28px, 4vw, 52px);
+  margin: 0 0 12px;
+}
+
+.hero-message span {
+  font-size: 16px;
+}
+
+/* メインコンテンツ */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 見出し */
+.section-heading {
+  margin-bottom: 28px;
+}
+
+.section-heading h2,
+.search-section h2 {
+  font-size: 27px;
+  color: #245f87;
+  margin-bottom: 10px;
+}
+
+.section-heading p,
+.search-section p {
+  color: #666;
+  font-size: 15px;
+}
+
+/* 検索エリア */
+.search-section {
+  text-align: center;
+  padding: 65px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.search-box {
+  display: flex;
+  max-width: 650px;
+  margin: 25px auto 0;
+  border: 2px solid #287eae;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.search-box input {
+  flex: 1;
+  min-width: 0;
+  padding: 15px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+
+.search-box button {
+  padding: 0 30px;
+  border: none;
+  background-color: #287eae;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background-color: #1c628b;
+}
+
+/* ジャンル検索 */
+.category-section {
+  padding: 60px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.category-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.category-card {
+  padding: 28px 15px;
+  text-align: center;
+  border: 1px solid #cbdde8;
+  border-radius: 8px;
+  background-color: #f8fbfd;
+  transition: 0.2s;
+}
+
+.category-card:hover {
+  border-color: #287eae;
+  background-color: #eef7fc;
+  transform: translateY(-3px);
+}
+
+.category-card span {
+  font-size: 35px;
+}
+
+.category-card h3 {
+  font-size: 18px;
+  color: #245f87;
+  margin: 12px 0 8px;
+}
+
+.category-card p {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+/* おすすめ観光地 */
+.spots-section {
+  padding: 60px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.spot-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.spot-card {
+  overflow: hidden;
+  border: 1px solid #cbdde8;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: 0.2s;
+}
+
+.spot-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+.spot-image-placeholder {
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spot-image-placeholder span {
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  color: #245f87;
+  font-weight: bold;
+}
+
+.nature {
+  background: linear-gradient(135deg, #b6d9c2, #528d72);
+}
+
+.history {
+  background: linear-gradient(135deg, #e8d6b9, #ad9271);
+}
+
+.infrastructure {
+  background: linear-gradient(135deg, #b5d2e2, #5685a2);
+}
+
+.spot-info {
+  padding: 20px;
+}
+
+.spot-info h3 {
+  font-size: 21px;
+  color: #245f87;
+  margin: 0 0 8px;
+}
+
+.spot-location {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.spot-info p:not(.spot-location) {
+  font-size: 14px;
+  line-height: 1.8;
+  min-height: 50px;
+}
+
+.spot-info a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #287eae;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.more-button {
+  text-align: center;
+  margin-top: 35px;
+}
+
+.more-button a {
+  display: inline-block;
+  padding: 14px 40px;
+  border: 1px solid #287eae;
+  border-radius: 5px;
+  color: #287eae;
+  font-weight: bold;
+}
+
+.more-button a:hover {
+  background-color: #287eae;
+  color: #fff;
+}
+
+/* サイトについて */
+.about-section {
+  margin: 60px 0;
+  padding: 40px;
+  text-align: center;
+  background-color: #f1f7fa;
+  border-radius: 8px;
+}
+
+.about-section h2 {
+  color: #245f87;
+  font-size: 23px;
+}
+
+.about-section p {
+  line-height: 2;
+  color: #555;
+}
+
+/* フッター */
+.site-footer {
+  padding: 25px;
+  text-align: center;
+  background-color: #245f87;
+  color: #fff;
+  font-size: 13px;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .header-nav {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-message {
+    top: 8%;
+    left: 5%;
+  }
+
+  .hero-message p {
+    font-size: 13px;
+  }
+
+  .hero-message span {
+    font-size: 11px;
+  }
+
+  .category-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .spot-list {
+    grid-template-columns: 1fr;
+  }
+
+  .main-content {
+    padding: 0 16px;
+  }
+
+  .search-section {
+    padding: 40px 5px;
+  }
+}
+
+/* 言語切り替え */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.language-switcher details {
+  position: relative;
+}
+
+.language-switcher summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 5px 8px;
+  border: 1px solid #cbdde8;
+  border-radius: 5px;
+  background-color: white;
+  color: #35566b;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.language-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 100;
+  min-width: 100px;
+  background-color: white;
+  border: 1px solid #cbdde8;
+  border-radius: 5px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.language-menu a {
+  display: block;
+  padding: 8px 10px;
+  color: #35566b;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.language-menu a:hover {
+  background-color: #f0f5f8;
+}
