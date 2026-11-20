@@ -1,0 +1,23 @@
+<h1><%= @spot.name %></h1>
+
+<div>
+  <h2>説明</h2>
+  <p><%= @spot.description %></p>
+</div>
+
+<div>
+  <h2>カテゴリ</h2>
+  <p><%= @spot.category.name %></p>
+</div>
+
+<div>
+  <h2>画像</h2>
+
+  <% if @spot.image.attached? %>
+    <%= image_tag @spot.image, width: 400 %>
+  <% else %>
+    <p>画像は登録されていません。</p>
+  <% end %>
+</div>
+
+<%= link_to "一覧に戻る", spots_path %>

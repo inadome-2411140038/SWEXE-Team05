@@ -20,6 +20,16 @@
   </div>
 
   <div>
+    <%= f.label :category_id, "カテゴリ" %>
+    <%= f.collection_select :category_id, @categories, :id, :name, { prompt: "カテゴリを選択してください" } %>
+  </div>
+
+  <div>
+    <%= f.check_box :recommended %>
+    <%= f.label :recommended, "おすすめ観光地にする" %>
+  </div>
+
+  <div>
     <%= f.label :image, "画像" %>
     <%= f.file_field :image, accept: "image/*" %>
   </div>
@@ -28,5 +38,4 @@
     <%= f.submit "登録する" %>
   </div>
 <% end %>
-
 <p><%= link_to "管理者ページに戻る", admin_index_path %></p>

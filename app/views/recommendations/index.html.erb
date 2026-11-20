@@ -1,0 +1,61 @@
+
+<div class="recommendations-page">
+
+  <!-- ページタイトル -->
+  <main class="main-content">
+    <section class="section-heading">
+      <h1>おすすめ観光地</h1>
+      <p>広島の魅力あふれる観光地をご紹介します。</p>
+    </section>
+
+    <!-- おすすめ観光地一覧 -->
+    <div class="spot-list">
+
+      <% if @spots.any? %>
+
+        <% @spots.each do |spot| %>
+          <article class="spot-card">
+
+            <% if spot.image.attached? %>
+              <%= image_tag spot.image, class: "spot-image" %>
+            <% else %>
+              <div class="spot-image-placeholder">
+                画像なし
+              </div>
+            <% end %>
+
+            <div class="spot-info">
+              <h2><%= spot.name %></h2>
+
+              <p class="spot-category">
+                <%= spot.category.name %>
+              </p>
+
+              <p><%= spot.description %></p>
+
+              <%= link_to "詳細を見る →", spot_path(spot) %>
+            </div>
+
+          </article>
+        <% end %>
+
+      <% else %>
+
+        <p>現在、おすすめ観光地は登録されていません。</p>
+
+      <% end %>
+
+    </div>
+
+    <div class="more-button">
+      <%= link_to "観光地一覧を見る →", spots_path %>
+    </div>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <p>© 2026 ひろしま観光発見！</p>
+  </footer>
+
+</div>

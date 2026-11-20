@@ -5,6 +5,7 @@ class AdminController < ApplicationController
 
   def new
     @spot = Spot.new
+    @categories = Category.all
   end
 
   def create
@@ -19,6 +20,7 @@ class AdminController < ApplicationController
 
   def edit
     @spot = Spot.find(params[:id])
+    @categories = Category.all
   end
 
   def update
@@ -44,6 +46,6 @@ class AdminController < ApplicationController
   private
 
   def spot_params
-    params.require(:spot).permit(:name, :description, :image)
+    params.require(:spot).permit(:name, :description, :image, :category_id, :recommended)
   end
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root "home#index"
+  resources :spots, only: [:index, :show]
+  get "recommendations", to: "recommendations#index", as: :recommendations
 
   get "switch_locale/:locale", to: "application#switch_locale", as: :switch_locale
 
