@@ -1,5 +1,17 @@
-<h1>スポット削除</h1>
+<h1>観光スポットの削除</h1>
 
-<p>削除機能は今後実装します。</p>
+<p>以下の観光スポットを削除しますか？</p>
 
-<%= link_to "管理者ページに戻る", admin_index_path %>
+<h3><%= @spot.name %></h3>
+<p><%= @spot.description %></p>
+
+<% if @spot.image.attached? %>
+  <%= image_tag @spot.image, width: 200 %>
+<% end %>
+
+<%= button_to "削除する",
+              admin_destroy_path(@spot.id),
+              method: :delete,
+              data: { turbo_confirm: "本当に削除しますか？" } %>
+
+<p><%= link_to "キャンセル", admin_index_path %></p>

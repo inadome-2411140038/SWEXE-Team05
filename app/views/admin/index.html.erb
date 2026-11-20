@@ -1,11 +1,31 @@
-<h1>観光スポット管理ページ</h1>
+<h1>観光スポット管理</h1>
 
-<p>広島県の観光スポットを管理するページです。</p>
+<p><%= notice %></p>
 
-<h2>管理メニュー</h2>
+<%= link_to "新しいスポットを登録", admin_new_path %>
 
-<ul>
-  <li><%= link_to "スポット新規登録", admin_new_path %></li>
-  <li><%= link_to "スポット編集", admin_edit_path %></li>
-  <li><%= link_to "スポット削除", admin_delete_path %></li>
-</ul>
+<hr>
+
+<h2>登録済みスポット一覧</h2>
+
+<% if @spots.any? %>
+  <% @spots.each do |spot| %>
+    <div>
+      <h3><%= spot.name %></h3>
+
+      <p><%= spot.description %></p>
+
+      <% if spot.image.attached? %>
+        <%= image_tag spot.image, width: 200 %>
+      <% end %>
+
+      <p>
+        <%= link_to "編集", admin_edit_path(spot.id) %>
+        <%= link_to "削除", admin_delete_path(spot.id) %>
+      </p>
+      <hr>
+    </div>
+  <% end %>
+<% else %>
+  <p>登録されているスポットはありません。</p>
+<% end %>

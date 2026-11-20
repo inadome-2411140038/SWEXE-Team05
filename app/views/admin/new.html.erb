@@ -1,5 +1,32 @@
-<h1>スポット新規登録</h1>
+<h1>観光スポットの新規登録</h1>
 
-<p>新規登録機能は今後実装します。</p>
+<% if @spot.errors.any? %>
+  <ul>
+    <% @spot.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
-<%= link_to "管理者ページに戻る", admin_index_path %>
+<%= form_with model: @spot, url: admin_create_path do |f| %>
+  <div>
+    <%= f.label :name, "スポット名" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :description, "説明" %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.label :image, "画像" %>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+
+  <div>
+    <%= f.submit "登録する" %>
+  </div>
+<% end %>
+
+<p><%= link_to "管理者ページに戻る", admin_index_path %></p>
