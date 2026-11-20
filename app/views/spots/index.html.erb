@@ -1,0 +1,39 @@
+<h1>観光スポット一覧</h1>
+
+<%= form_with url: spots_path, method: :get do |f| %>
+  <div>
+    <%= f.label :keyword, "観光地名" %>
+    <%= f.text_field :keyword, value: params[:keyword], placeholder: "観光地名を入力" %>
+  </div>
+
+  <div>
+    <%= f.label :category_id, "カテゴリ" %>
+    <%= f.select :category_id,
+        options_from_collection_for_select(
+          @categories,
+          :id,
+          :name,
+          params[:category_id]
+        ),
+        { include_blank: "すべて" } %>
+  </div>
+
+  <%= f.submit "検索" %>
+<% end %>
+
+<hr>
+
+<% @spots.each do |spot| %>
+  <div>
+    <h2>
+      <%= link_to spot.name, spot_path(spot) %>
+    </h2>
+
+    <p><%= spot.description %></p>
+    <p>カテゴリ：<%= spot.category.name %></p>
+
+    <% if spot.image.attached? %>
+      <%= image_tag spot.image, width: 200 %>
+    <% end %>
+  </div>
+<% end %>

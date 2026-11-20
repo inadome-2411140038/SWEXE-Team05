@@ -1,33 +1,6 @@
 
+
 <div class="top-page">
-
-  
-
-    <!-- ヘッダー -->
-    <header class="site-header">
-        <div class="header-inner">
-            <a href="/" class="site-logo"><%= t("site.title") %></a>
-
-            <nav class="header-nav">
-                <a href="/"><%= t("site.home") %></a>
-                <a href="#spots"><%= t("site.spots") %></a>
-                <a href="#categories"><%= t("site.categories") %></a>
-                <a href="#about"><%= t("site.about") %></a>
-
-                <div class="language-switcher">
-                    <details>
-                        <summary>🌐 言語 ▼</summary>
-                        <div class="language-menu">
-                            <%= link_to "日本語", switch_locale_path(:ja) %>
-                            <%= link_to "English", switch_locale_path(:en) %>
-                        </div>
-                    </details>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-
 
   <!-- メインビジュアル -->
   <section class="hero">
@@ -47,10 +20,11 @@
       <h2>広島の観光地を探す</h2>
       <p>気になる場所やキーワードから観光地を探してみましょう。</p>
 
-      <div class="search-box">
-        <input type="text" placeholder="観光地名・キーワードを入力">
-        <button type="button">検索</button>
-      </div>
+      <%= form_with url: spots_path, method: :get, class: "search-box" do |f| %>
+        <%= f.text_field :keyword,
+            placeholder: "観光地名・キーワードを入力" %>
+        <%= f.submit "検索" %>
+      <% end %>
     </section>
 
     <!-- ジャンルから探す -->
@@ -61,29 +35,13 @@
       </div>
 
       <div class="category-list">
-        <a href="#spots" class="category-card">
-          <span>🌿</span>
-          <h3>自然・絶景</h3>
-          <p>美しい景色や自然を楽しむ</p>
-        </a>
-
-        <a href="#spots" class="category-card">
-          <span>🏯</span>
-          <h3>歴史・文化</h3>
-          <p>歴史ある建物や文化に触れる</p>
-        </a>
-
-        <a href="#spots" class="category-card">
-          <span>🌉</span>
-          <h3>インフラ</h3>
-          <p>橋やダムなどの土木施設を巡る</p>
-        </a>
-
-        <a href="#spots" class="category-card">
-          <span>🎡</span>
-          <h3>体験・レジャー</h3>
-          <p>体験や遊びを楽しむ</p>
-        </a>
+        <% @categories.each do |category| %>
+          <%= link_to spots_path(category_id: category.id), class: "category-card" do %>
+            <span>📍</span>
+            <h3><%= category.name %></h3>
+            <p><%= category.name %>の観光地を探す</p>
+          <% end %>
+        <% end %>
       </div>
     </section>
 
@@ -96,46 +54,35 @@
 
       <div class="spot-list">
 
-        <article class="spot-card">
-          <div class="spot-image-placeholder nature">
-            <span>自然・絶景</span>
-          </div>
-          <div class="spot-info">
-            <h3>三段峡</h3>
-            <p class="spot-location">広島県安芸太田町</p>
-            <p>美しい渓谷や滝など、豊かな自然を満喫できる景勝地。</p>
-            <a href="#spots">詳細を見る →</a>
-          </div>
-        </article>
+        <% @spots.each do |spot| %>
+          <article class="spot-card">
 
-        <article class="spot-card">
-          <div class="spot-image-placeholder history">
-            <span>歴史・文化</span>
-          </div>
-          <div class="spot-info">
-            <h3>帝釈峡</h3>
-            <p class="spot-location">広島県庄原市・神石高原町</p>
-            <p>雄橋などの自然が作り出した壮大な景観が魅力。</p>
-            <a href="#spots">詳細を見る →</a>
-          </div>
-        </article>
+            <% if spot.image.attached? %>
+              <%= image_tag spot.image, class: "spot-image" %>
+            <% else %>
+              <div class="spot-image-placeholder">
+                <span>画像なし</span>
+              </div>
+            <% end %>
 
-        <article class="spot-card">
-          <div class="spot-image-placeholder infrastructure">
-            <span>インフラ</span>
-          </div>
-          <div class="spot-info">
-            <h3>灰塚ダム</h3>
-            <p class="spot-location">広島県三次市・庄原市</p>
-            <p>ダムと周辺の自然景観を楽しめるスポット。</p>
-            <a href="#spots">詳細を見る →</a>
-          </div>
-        </article>
+            <div class="spot-info">
+              <h3><%= spot.name %></h3>
+              <p class="spot-location"><%= spot.category.name %></p>
+              <p><%= spot.description %></p>
+              <%= link_to "詳細を見る →", spot_path(spot) %>
+            </div>
+
+          </article>
+        <% end %>
+
+        <% if @spots.empty? %>
+          <p>現在、おすすめ観光地は登録されていません。</p>
+        <% end %>
 
       </div>
 
       <div class="more-button">
-        <a href="#spots">観光地をもっと見る →</a>
+        <%= link_to "観光地をもっと見る →", spots_path %>
       </div>
     </section>
 
