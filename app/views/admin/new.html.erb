@@ -15,6 +15,11 @@
   </div>
 
   <div>
+    <%= f.label :name_kana, "スポット名（ひらがな）" %>
+    <%= f.text_field :name_kana %>
+  </div>
+
+  <div>
     <%= f.label :description, "説明" %>
     <%= f.text_area :description %>
   </div>
@@ -38,4 +43,5 @@
     <%= f.submit "登録する" %>
   </div>
 <% end %>
-<p><%= link_to "管理者ページに戻る", admin_index_path %></p>
+
+<p><%= link_to "観光スポット管理に戻る", admin_spots_path %></p>

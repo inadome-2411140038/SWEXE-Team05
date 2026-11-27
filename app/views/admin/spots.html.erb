@@ -1,0 +1,84 @@
+<h1>観光スポット管理</h1>
+
+<p><%= notice %></p>
+
+<p><%= link_to "管理者トップページに戻る", admin_index_path %></p>
+
+<%= link_to "新しいスポットを登録", admin_new_path %>
+
+<hr>
+
+<h2>登録済みスポット一覧</h2>
+
+<%= form_with url: admin_spots_path, method: :get do |f| %>
+  <div>
+    <%= f.label :keyword, "スポット名" %>
+    <%= f.text_field :keyword, value: params[:keyword], placeholder: "漢字・ひらがなで検索" %>
+  </div>
+
+  <div>
+    <%= f.label :category_id, "カテゴリ" %>
+    <%= f.collection_select :category_id, @categories, :id, :name, { include_blank: "すべて", selected: params[:category_id] } %>
+  </div>
+
+  <div>
+    <%= f.label :recommended, "おすすめ設定" %>
+    <%= f.select :recommended,
+        options_for_select([
+          ["すべて", ""],
+          ["おすすめあり", "true"],
+          ["おすすめなし", "false"]
+        ], params[:recommended]) %>
+  </div>
+
+  <div>
+    <%= f.label :sort, "並び替え" %>
+    <%= f.select :sort,
+        options_for_select([
+          ["登録順（新しい順）", "newest"],
+          ["登録順（古い順）", "oldest"],
+          ["更新順（新しい順）", "updated"],
+          ["ひらがな順", "kana"]
+        ], params[:sort]) %>
+  </div>
+
+  <%= f.submit "検索" %>
+  <%= link_to "検索解除", admin_spots_path %>
+<% end %>
+
+<hr>
+
+<p>登録総数：<%= @total_count %>件</p>
+<p>検索結果：<%= @result_count %>件</p>
+
+<hr>
+
+<% if @spots.any? %>
+  <% @spots.each do |spot| %>
+    <div>
+      <h3><%= spot.name %></h3>
+
+      <p>ひらがな：<%= spot.name_kana %></p>
+      <p>カテゴリ：<%= spot.category.name %></p>
+      <p>おすすめ：<%= spot.recommended ? "あり" : "なし" %></p>
+
+      <p><%= spot.description %></p>
+
+      <% if spot.image.attached? %>
+        <%= image_tag spot.image, width: 200 %>
+      <% end %>
+
+      <p>登録日時：<%= spot.created_at.localtime.strftime("%Y/%m/%d %H:%M") %></p>
+      <p>最終更新日時：<%= spot.updated_at.localtime.strftime("%Y/%m/%d %H:%M") %></p>
+
+      <p>
+        <%= link_to "編集", admin_edit_path(spot.id) %>
+        <%= link_to "削除", admin_delete_path(spot.id) %>
+      </p>
+
+      <hr>
+    </div>
+  <% end %>
+<% else %>
+  <p>該当するスポットはありません。</p>
+<% end %>

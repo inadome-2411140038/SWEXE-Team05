@@ -1,5 +1,7 @@
 <h1>観光スポットの編集</h1>
 
+<p><%= notice %></p>
+
 <% if @spot.errors.any? %>
   <ul>
     <% @spot.errors.full_messages.each do |message| %>
@@ -15,6 +17,11 @@
   </div>
 
   <div>
+    <%= f.label :name_kana, "スポット名（ひらがな）" %>
+    <%= f.text_field :name_kana %>
+  </div>
+
+  <div>
     <%= f.label :description, "説明" %>
     <%= f.text_area :description %>
   </div>
@@ -22,6 +29,11 @@
   <div>
     <%= f.label :category_id, "カテゴリ" %>
     <%= f.collection_select :category_id, @categories, :id, :name, { prompt: "カテゴリを選択してください" } %>
+  </div>
+
+  <div>
+    <%= f.check_box :recommended %>
+    <%= f.label :recommended, "おすすめ観光地にする" %>
   </div>
 
   <div>
@@ -40,4 +52,13 @@
   </div>
 <% end %>
 
-<p><%= link_to "管理者ページに戻る", admin_index_path %></p>
+<% if @spot.image.attached? %>
+  <hr>
+
+  <%= button_to "現在の画像を削除",
+      admin_delete_image_path(@spot.id),
+      method: :delete,
+      form: { data: { turbo_confirm: "画像を削除しますか？" } } %>
+<% end %>
+
+<p><%= link_to "観光スポット管理に戻る", admin_spots_path %></p>

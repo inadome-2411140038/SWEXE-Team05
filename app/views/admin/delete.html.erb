@@ -2,7 +2,12 @@
 
 <p>以下の観光スポットを削除しますか？</p>
 
-<h3><%= @spot.name %></h3>
+<h2><%= @spot.name %></h2>
+
+<p>ひらがな：<%= @spot.name_kana %></p>
+<p>カテゴリ：<%= @spot.category.name %></p>
+<p>おすすめ：<%= @spot.recommended ? "あり" : "なし" %></p>
+
 <p><%= @spot.description %></p>
 
 <% if @spot.image.attached? %>
@@ -10,8 +15,8 @@
 <% end %>
 
 <%= button_to "削除する",
-              admin_destroy_path(@spot.id),
-              method: :delete,
-              data: { turbo_confirm: "本当に削除しますか？" } %>
+    admin_destroy_path(@spot.id),
+    method: :delete,
+    form: { data: { turbo_confirm: "本当に削除しますか？" } } %>
 
-<p><%= link_to "キャンセル", admin_index_path %></p>
+<p><%= link_to "キャンセル", admin_spots_path %></p>
