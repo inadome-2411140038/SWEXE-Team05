@@ -1,31 +1,19 @@
-<h1>観光スポット管理</h1>
-
-<p><%= notice %></p>
-
-<%= link_to "新しいスポットを登録", admin_new_path %>
+<h1>管理者ページ</h1>
 
 <hr>
 
-<h2>登録済みスポット一覧</h2>
+<div>
+  <h2>観光スポット管理</h2>
+  <p>観光スポットの登録・編集・削除を行います。</p>
 
-<% if @spots.any? %>
-  <% @spots.each do |spot| %>
-    <div>
-      <h3><%= spot.name %></h3>
+  <%= link_to "観光スポット管理へ", admin_spots_path %>
+</div>
 
-      <p><%= spot.description %></p>
+<hr>
 
-      <% if spot.image.attached? %>
-        <%= image_tag spot.image, width: 200 %>
-      <% end %>
+<div>
+  <h2>レビュー管理</h2>
+  <p>観光スポットに投稿されたレビューを管理します。</p>
 
-      <p>
-        <%= link_to "編集", admin_edit_path(spot.id) %>
-        <%= link_to "削除", admin_delete_path(spot.id) %>
-      </p>
-      <hr>
-    </div>
-  <% end %>
-<% else %>
-  <p>登録されているスポットはありません。</p>
-<% end %>
+  <%= link_to "レビュー管理へ", admin_reviews_path %>
+</div>

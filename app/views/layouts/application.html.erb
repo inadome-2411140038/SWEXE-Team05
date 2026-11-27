@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,30 +20,31 @@
   </head>
 
   <body>
-    <header class="site-header">
-      <div class="header-inner">
-        <%= link_to t("site.title"), root_path, class: "site-logo" %>
+    <% unless controller_name == "admin" %>
+      <header class="site-header">
+        <div class="header-inner">
+          <%= link_to t("site.title"), root_path, class: "site-logo" %>
 
-        <nav class="header-nav">
-          <%= link_to t("site.home"), root_path %>
-          <%= link_to t("site.spots"), spots_path %>
-          <%= link_to t("site.categories"), recommendations_path %>
-          <%= link_to t("site.about"), root_path(anchor: "about") %>
+          <nav class="header-nav">
+            <%= link_to t("site.home"), root_path %>
+            <%= link_to t("site.spots"), spots_path %>
+            <%= link_to t("site.categories"), recommendations_path %>
+            <%= link_to t("site.about"), root_path(anchor: "about") %>
 
-          <div class="language-switcher">
-            <details>
-              <summary>🌐 言語 ▼</summary>
-              <div class="language-menu">
-                <%= link_to "日本語", switch_locale_path(:ja) %>
-                <%= link_to "English", switch_locale_path(:en) %>
-              </div>
-            </details>
-          </div>
-        </nav>
-      </div>
-    </header>
+            <div class="language-switcher">
+              <details>
+                <summary>🌐 言語 ▼</summary>
+                <div class="language-menu">
+                  <%= link_to "日本語", switch_locale_path(:ja) %>
+                  <%= link_to "English", switch_locale_path(:en) %>
+                </div>
+              </details>
+            </div>
+          </nav>
+        </div>
+      </header>
+    <% end %>
 
     <%= yield %>
   </body>
 </html>
-

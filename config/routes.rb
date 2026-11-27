@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get "switch_locale/:locale", to: "application#switch_locale", as: :switch_locale
 
   get "admin/index", to: "admin#index", as: :admin_index
+  get "admin/spots", to: "admin#spots", as: :admin_spots
+  get "admin/reviews", to: "admin#reviews", as: :admin_reviews
+
   get "admin/new", to: "admin#new", as: :admin_new
   post "admin/create", to: "admin#create", as: :admin_create
 
@@ -14,6 +17,8 @@ Rails.application.routes.draw do
 
   get "admin/delete/:id", to: "admin#delete", as: :admin_delete
   delete "admin/destroy/:id", to: "admin#destroy", as: :admin_destroy
+
+  delete "admin/delete_image/:id", to: "admin#delete_image", as: :admin_delete_image
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
