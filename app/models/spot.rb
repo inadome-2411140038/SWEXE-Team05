@@ -3,6 +3,8 @@ class Spot < ApplicationRecord
 
   belongs_to :category
 
+  has_many :reviews, dependent: :destroy
+
   validates :name, presence: true
 
   validates :name_kana,

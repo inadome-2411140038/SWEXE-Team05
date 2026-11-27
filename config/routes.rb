@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   root "home#index"
-  resources :spots, only: [:index, :show]
+  resources :spots, only: [:index, :show] do
+    resources :reviews, only: [:create] do
+      collection do
+        post :confirm
+        get :completed
+      end
+    end
+  end
   get "recommendations", to: "recommendations#index", as: :recommendations
 
   get "switch_locale/:locale", to: "application#switch_locale", as: :switch_locale

@@ -422,3 +422,228 @@ a {
 .language-menu a:hover {
   background-color: #f0f5f8;
 }
+
+/* おすすめ観光地：画像の表示比率を統一 */
+.recommendations-page .spot-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* おすすめ観光地：画像がない場合 */
+.recommendations-page .spot-image-placeholder {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background-color: #e9f3f8;
+}
+
+/* 観光スポット一覧 */
+.spots-page .spot-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+}
+
+.spots-page .spot-image-placeholder {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background-color: #e9f3f8;
+}
+
+/* 一覧ページの検索フォーム */
+.spot-search-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.spot-search-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.spot-search-form input[type="text"],
+.spot-search-form select {
+  padding: 10px;
+  border: 1px solid #cbdde8;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.spot-search-form input[type="submit"] {
+  padding: 11px 25px;
+  border: none;
+  border-radius: 5px;
+  background-color: #287eae;
+  color: #fff;
+  cursor: pointer;
+}
+
+.spot-search-form input[type="submit"]:hover {
+  background-color: #1c628b;
+}
+
+/* TOPページ：おすすめ観光地 */
+.top-page .spot-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+}
+
+.top-page .spot-image-placeholder {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background-color: #e9f3f8;
+}
+
+/* 観光スポット詳細ページ */
+.spot-detail-page {
+  padding: 40px 0 70px;
+  background-color: #f4f8fb;
+}
+
+.spot-detail-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px;
+  background-color: #fff;
+  border: 1px solid #cbdde8;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(36, 95, 135, 0.08);
+}
+
+/* 一覧に戻るリンク */
+.spot-detail-breadcrumb {
+  margin-bottom: 24px;
+}
+
+.spot-detail-breadcrumb a {
+  color: #287eae;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.spot-detail-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* 観光スポット名 */
+.spot-detail-heading {
+  margin-bottom: 24px;
+}
+
+.spot-detail-heading h1 {
+  margin: 10px 0 0;
+  color: #245f87;
+  font-size: 32px;
+  line-height: 1.4;
+}
+
+.spot-detail-category {
+  display: inline-block;
+  margin: 0;
+  padding: 6px 14px;
+  color: #245f87;
+  background-color: #e9f3f8;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* 詳細画像 */
+.spot-detail-image {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #e9f3f8;
+}
+
+.spot-detail-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+}
+
+.spot-detail-no-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  color: #666;
+}
+
+/* 説明 */
+.spot-detail-description {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #dce6ed;
+}
+
+.spot-detail-description h2 {
+  margin: 0 0 16px;
+  padding-left: 12px;
+  border-left: 4px solid #287eae;
+  color: #245f87;
+  font-size: 22px;
+}
+
+.spot-detail-description p {
+  margin: 0;
+  color: #444;
+  font-size: 15px;
+  line-height: 2;
+  white-space: pre-wrap;
+}
+
+/* 一覧に戻るボタン */
+.spot-detail-back {
+  margin-top: 35px;
+  text-align: center;
+}
+
+.spot-detail-back a {
+  display: inline-block;
+  padding: 12px 28px;
+  color: #287eae;
+  border: 1px solid #287eae;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.spot-detail-back a:hover {
+  color: #fff;
+  background-color: #287eae;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+  .spot-detail-page {
+    padding: 20px 0 40px;
+  }
+
+  .spot-detail-container {
+    padding: 20px;
+  }
+
+  .spot-detail-heading h1 {
+    font-size: 26px;
+  }
+
+  .spot-detail-description h2 {
+    font-size: 20px;
+  }
+}
