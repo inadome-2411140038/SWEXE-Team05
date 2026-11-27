@@ -1,10 +1,10 @@
-
-
 <div class="top-page">
 
   <!-- メインビジュアル -->
   <section class="hero">
-    <img src="/images/miyajima.jpg" alt="宮島の厳島神社と大鳥居" class="hero-image">
+    <img src="/images/miyajima.jpg"
+         alt="宮島の厳島神社と大鳥居"
+         class="hero-image">
 
     <div class="hero-message">
       <p><%= t("site.hero_title") %></p>
@@ -36,7 +36,8 @@
 
       <div class="category-list">
         <% @categories.each do |category| %>
-          <%= link_to spots_path(category_id: category.id), class: "category-card" do %>
+          <%= link_to spots_path(category_id: category.id),
+              class: "category-card" do %>
             <span>📍</span>
             <h3><%= category.name %></h3>
             <p><%= category.name %>の観光地を探す</p>
@@ -53,36 +54,36 @@
       </div>
 
       <div class="spot-list">
+        <% if @spots.any? %>
+          <% @spots.each do |spot| %>
+            <article class="spot-card">
+              <% if spot.image.attached? %>
+                <%= image_tag spot.image,
+                    class: "spot-image",
+                    alt: spot.name %>
+              <% else %>
+                <div class="spot-image-placeholder">
+                  <span>画像なし</span>
+                </div>
+              <% end %>
 
-        <% @spots.each do |spot| %>
-          <article class="spot-card">
-
-            <% if spot.image.attached? %>
-              <%= image_tag spot.image, class: "spot-image" %>
-            <% else %>
-              <div class="spot-image-placeholder">
-                <span>画像なし</span>
+              <div class="spot-info">
+                <h3><%= spot.name %></h3>
+                <p class="spot-location">
+                  カテゴリー：<%= spot.category.name %>
+                </p>
+                <p><%= spot.description %></p>
+                <%= link_to "詳細を見る →", spot_path(spot) %>
               </div>
-            <% end %>
-
-            <div class="spot-info">
-              <h3><%= spot.name %></h3>
-              <p class="spot-location"><%= spot.category.name %></p>
-              <p><%= spot.description %></p>
-              <%= link_to "詳細を見る →", spot_path(spot) %>
-            </div>
-
-          </article>
-        <% end %>
-
-        <% if @spots.empty? %>
+            </article>
+          <% end %>
+        <% else %>
           <p>現在、おすすめ観光地は登録されていません。</p>
         <% end %>
-
       </div>
 
       <div class="more-button">
-        <%= link_to "観光地をもっと見る →", spots_path %>
+        <%= link_to "おすすめ観光地をもっと見る →", recommendations_path %>
       </div>
     </section>
 

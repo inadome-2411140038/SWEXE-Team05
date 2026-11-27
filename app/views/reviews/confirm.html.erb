@@ -1,0 +1,49 @@
+<div class="spot-detail-page">
+  <main class="main-content">
+
+    <div class="spot-detail-container">
+
+      <!-- 確認画面タイトル -->
+      <h1>レビュー内容の確認</h1>
+
+      <!-- 観光地名 -->
+      <p>
+        観光地：
+        <%= @spot.name %>
+      </p>
+
+      <!-- 評価 -->
+      <p>
+        評価：
+        <%= "★" * @review.rating %><%= "☆" * (5 - @review.rating) %>
+        （<%= @review.rating %> / 5）
+      </p>
+
+      <!-- コメント -->
+      <h2>コメント</h2>
+
+      <div class="review-comment">
+        <%= simple_format(@review.comment) %>
+      </div>
+
+      <!-- 投稿確定フォーム -->
+      <%= form_with model: [@spot, @review],
+                    local: true,
+                    data: { turbo: false } do |f| %>
+
+        <%= f.hidden_field :rating %>
+        <%= f.hidden_field :comment %>
+
+        <%= f.submit "この内容で投稿する" %>
+
+      <% end %>
+
+      <!-- 入力画面に戻る -->
+      <div class="spot-detail-back">
+        <%= link_to "入力画面に戻る", spot_path(@spot) %>
+      </div>
+
+    </div>
+
+  </main>
+</div>

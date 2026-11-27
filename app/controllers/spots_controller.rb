@@ -14,5 +14,7 @@ class SpotsController < ApplicationController
 
   def show
     @spot = Spot.find(params[:id])
+    @reviews = @spot.reviews.order(created_at: :desc)
+    @review = @spot.reviews.build
   end
 end

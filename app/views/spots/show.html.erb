@@ -1,23 +1,129 @@
-<h1><%= @spot.name %></h1>
+<div class="spot-detail-page">
+  <main class="main-content">
 
-<div>
-  <h2>説明</h2>
-  <p><%= @spot.description %></p>
+    <div class="spot-detail-container">
+
+      <!-- 一覧に戻る -->
+      <div class="spot-detail-breadcrumb">
+        <%= link_to "← 観光スポット一覧に戻る", spots_path %>
+      </div>
+
+      <!-- 観光スポット名 -->
+      <div class="spot-detail-heading">
+        <p class="spot-detail-category">
+          <%= @spot.category.name %>
+        </p>
+        <h1><%= @spot.name %></h1>
+      </div>
+
+      <!-- 観光スポット画像 -->
+      <div class="spot-detail-image">
+        <% if @spot.image.attached? %>
+          <%= image_tag @spot.image,
+              class: "spot-detail-photo",
+              alt: @spot.name %>
+        <% else %>
+          <div class="spot-detail-no-image">
+            <p>画像は登録されていません。</p>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- 観光スポットの説明 -->
+      <section class="spot-detail-description">
+        <h2>観光スポットについて</h2>
+        <%= simple_format(@spot.description) %>
+      </section>
+
+      <!-- レビュー -->
+      <section class="spot-reviews">
+        <h2>レビュー</h2>
+
+        <% if notice.present? %>
+          <p class="review-notice"><%= notice %></p>
+        <% end %>
+
+        <!-- 平均評価 -->
+        <% if @reviews.any? %>
+          <p class="review-average">
+            平均評価：
+            <strong>
+              <%= number_with_precision(@reviews.average(:rating), precision: 1) %>
+            </strong>
+            / 5（<%= @reviews.size %>件）
+          </p>
+        <% else %>
+          <p>まだレビューはありません。</p>
+        <% end %>
+
+        <!-- 保存済みレビュー一覧 -->
+        <div class="review-list">
+          <% @reviews.each do |review| %>
+            <article class="review-card">
+              <p class="review-rating">
+                評価：
+                <%= "★" * review.rating %><%= "☆" * (5 - review.rating) %>
+                （<%= review.rating %> / 5）
+              </p>
+
+              <div class="review-comment">
+                <%= simple_format(review.comment) %>
+              </div>
+
+              <small>
+                投稿日：<%= review.created_at.strftime("%Y年%m月%d日") %>
+              </small>
+            </article>
+          <% end %>
+        </div>
+
+        <!-- レビュー投稿フォーム -->
+        <h3>レビューを投稿する</h3>
+
+        <%= form_with model: [@spot, @review],
+                      url: confirm_spot_reviews_path(@spot),
+                      method: :post,
+                      local: true,
+                      data: { turbo: false } do |f| %>
+
+          <% if @review.errors.any? %>
+            <div class="review-errors">
+              <p>入力内容を確認してください。</p>
+
+              <% @review.errors.full_messages.each do |message| %>
+                <p><%= message %></p>
+              <% end %>
+            </div>
+          <% end %>
+
+          <div class="review-form-field">
+            <%= f.label :rating, "評価" %>
+
+            <%= f.select :rating,
+                [["5（最高）", 5], ["4", 4], ["3", 3], ["2", 2], ["1", 1]],
+                { prompt: "評価を選択してください" },
+                { required: true } %>
+          </div>
+
+          <div class="review-form-field">
+            <%= f.label :comment, "コメント" %>
+
+            <%= f.text_area :comment,
+                rows: 4,
+                required: true %>
+          </div>
+
+          <%= f.submit "入力内容を確認する" %>
+
+        <% end %>
+      </section>
+
+      <!-- 一覧に戻る -->
+      <div class="spot-detail-back">
+        <%= link_to "観光スポット一覧に戻る", spots_path %>
+      </div>
+
+    </div>
+
+  </main>
 </div>
-
-<div>
-  <h2>カテゴリ</h2>
-  <p><%= @spot.category.name %></p>
-</div>
-
-<div>
-  <h2>画像</h2>
-
-  <% if @spot.image.attached? %>
-    <%= image_tag @spot.image, width: 400 %>
-  <% else %>
-    <p>画像は登録されていません。</p>
-  <% end %>
-</div>
-
-<%= link_to "一覧に戻る", spots_path %>
